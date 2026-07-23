@@ -6,7 +6,7 @@ from telethon.sessions import StringSession
 api_id = 30242201          
 api_hash = '78259592286cda3680f631835e9d503a'  
 
-# قراءة الجلسة النصية التي أضفناها في متغيرات البيئة (Variables) على Railway
+# قراءة الجلسة النصية من متغيرات البيئة في Railway تلقائياً
 SESSION_STRING = os.environ.get('SESSION_STRING')
 
 # تشغيل الجلسة عبر StringSession مباشرة ودون طلب رقم الهاتف
@@ -34,6 +34,29 @@ ad_message = """WELCOME ​⚙️📜🔐💎
 ‼️ملاحظة : عند شراءك 🔑 يوم أو أسبوع تحتاج لتفعيل نمط المطور بالحاسوب أم عند شراءك ل🔑 شهر لا تحتاج حاسوب
 ​⚙️بالنسبة لملفات فيلزا FILZA  ios 14.0 الى 16.6.1⬇️👇🏻
 🔻ايم دراغ = 250الف بدون بند وبدون بلاك ليست (موجود في الفيديو  )
+🔻هيد شوت بطن (obb):350ألف بدون بند وبدون بلاك ليست في رومات فقط (مضمون في رومات / باقي الأوضاع فيه بلاك ليست)
+🔻سرعة (speed): 400ألف بدون بند وبدون بلاك ليست جميع الأوضاع مضمون 100‎%‎ .
+- طريقة تركيب عبر انستغرام او في تيليجرام بعد فتح مشاركة شاشة
+- طريقة الدفع : بريدي موب او ccp
+(كشف أماكن+ايم بوت +ايم دراغ +OBB + مود ستريم).
+-تلغرام :@LAZERXx1"""
+
+@client.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
+async def handle_private_message(event):
+    sender_id = event.sender_id
+    
+    # تحقق مما إذا كان الشخص قد راسلك من قبل
+    if sender_id not in welcomed_users:
+        # أضفه إلى القائمة حتى لا يرد عليه مرة أخرى
+        welcomed_users.add(sender_id)
+        
+        # إرسال نص الإعلان فوراً للرسالة الأولى فقط
+        await event.reply(ad_message)
+
+# بدء تشغيل اليوزربوت على السيرفر
+print("UserBot is running and listening to your private chats...")
+client.start()
+client.run_until_disconnected()
 🔻هيد شوت بطن (obb):350ألف بدون بند وبدون بلاك ليست في رومات فقط (مضمون في رومات / باقي الأوضاع فيه بلاك ليست)
 🔻سرعة (speed): 400ألف بدون بند وبدون بلاك ليست جميع الأوضاع مضمون 100‎%‎ .
 - طريقة تركيب عبر انستغرام او في تيليجرام بعد فتح مشاركة شاشة
