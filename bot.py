@@ -1,11 +1,16 @@
+import os
 from telethon import TelegramClient, events
+from telethon.sessions import StringSession
 
 # بيانات الـ API الخاصة بك
 api_id = 30242201          
 api_hash = '78259592286cda3680f631835e9d503a'  
 
-# تشغيل الجلسة باسم حسابك الشخصي
-client = TelegramClient('my_account', api_id, api_hash)
+# قراءة الجلسة النصية التي أضفناها في متغيرات البيئة (Variables) على Railway
+SESSION_STRING = os.environ.get('SESSION_STRING')
+
+# تشغيل الجلسة عبر StringSession مباشرة ودون طلب رقم الهاتف
+client = TelegramClient(StringSession(SESSION_STRING), api_id, api_hash)
 
 # مجموعة لتخزين معرفات الأشخاص الذين تم الرد عليهم مسبقاً خلال فترة تشغيل السكريبت
 welcomed_users = set()
@@ -19,9 +24,8 @@ ad_message = """WELCOME ​⚙️📜🔐💎
 🔑30 يوم  :300الف     
 بدون بند ولا بلاك ليست (📲أندرويد بدون روت)
 (ايم بوت + ايم دراغ +قتل تلقائي +كشف اماكن + سرعة ) 
-‏ تريد معرفة لبانل يثبت عندك او لا تواصل معي في الخاص 
+‏ /تريد معرفة لبانل يثبت عندك او لا تواصل معي في 
 💎
-💙⬇️👇🏻
 ميجيل برو 💎​⚙️
 ‎ الحساب الأساسي :
 -🔑يوم: 130ألف 
@@ -49,7 +53,7 @@ async def handle_private_message(event):
         # إرسال نص الإعلان فوراً للرسالة الأولى فقط
         await event.reply(ad_message)
 
-# بدء تشغيل اليوزربوت
+# بدء تشغيل اليوزربوت على السيرفر
 print("UserBot is running and listening to your private chats...")
 client.start()
 client.run_until_disconnected()
