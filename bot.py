@@ -19,8 +19,9 @@ ad_message = """WELCOME ​⚙️📜🔐💎
 🔑30 يوم  :300الف     
 بدون بند ولا بلاك ليست (📲أندرويد بدون روت)
 (ايم بوت + ايم دراغ +قتل تلقائي +كشف اماكن + سرعة ) 
-‏ /تريد معرفة لبانل يثبت عندك او لا تواصل معي في 
+‏ تريد معرفة لبانل يثبت عندك او لا تواصل معي في الخاص 
 💎
+💙⬇️👇🏻
 ميجيل برو 💎​⚙️
 ‎ الحساب الأساسي :
 -🔑يوم: 130ألف 
@@ -52,4 +53,3 @@ async def handle_private_message(event):
 print("UserBot is running and listening to your private chats...")
 client.start()
 client.run_until_disconnected()
-
